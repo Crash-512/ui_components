@@ -1,4 +1,4 @@
-package smart.gui.components.text
+package smart.gui.components
 {
 	import flash.events.Event;
 	import flash.events.FocusEvent;
@@ -8,7 +8,6 @@ package smart.gui.components.text
 	import flash.text.TextFieldAutoSize;
 	import flash.ui.Keyboard;
 
-	import smart.gui.components.SG_ComponentType;
 	import smart.gui.constants.SG_SkinType;
 	import smart.gui.constants.SG_ValueType;
 

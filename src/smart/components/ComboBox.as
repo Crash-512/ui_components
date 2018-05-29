@@ -1,7 +1,7 @@
 package smart.components
 {
-	import smart.gui.components.combobox.SG_ComboBox;
-	import smart.gui.components.controllers.SG_Slider;
+	import smart.gui.components.SG_ComboBox;
+	import smart.gui.components.SG_Slider;
 	import smart.gui.signals.SG_Signal;
 	
 	internal class ComboBox extends Component

@@ -1,23 +1,20 @@
-package smart.gui.components.switchers
+package smart.gui.components
 {
 	import flash.display.DisplayObject;
-	import flash.display.Graphics;
 	import flash.display.Graphics;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	import flash.geom.ColorTransform;
 	import flash.geom.Rectangle;
-
-	import smart.tweener.SP_Easing;
-	import smart.tweener.SP_Tweener;
+	
 	import smart.gui.components.SG_ComponentType;
 	import smart.gui.components.SG_DynamicComponent;
-	import smart.gui.components.SG_ValueEvent;
 	import smart.gui.constants.SG_SkinType;
 	import smart.gui.constants.SG_ValueType;
 	import smart.gui.skin.SG_ComponentSkin;
-
+	import smart.tweener.SP_Easing;
+	import smart.tweener.SP_Tweener;
+	
 	public class SG_Switcher extends SG_DynamicComponent
 	{
 		private var _checked:Boolean;

@@ -1,4 +1,4 @@
-package smart.gui.components.icons
+package smart.gui.components
 {
 	import flash.display.BitmapData;
 	import flash.display.Graphics;

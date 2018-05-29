@@ -14,19 +14,6 @@ package smart.gui.skin
 			this.bitmapData = bitmapData;
 			this.rect = frameRect;
 		}
-		
-		public function destroy():void
-		{
-			if (bitmapData) bitmapData.dispose();
-			bitmapData = null;
-			rect = null;
-		}
-		
-		public function clone():SG_ComponentTexture 
-		{
-			return new SG_ComponentTexture(bitmapData.clone(), rect.clone());
-		}
-		
 	}
 
 }

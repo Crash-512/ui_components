@@ -1,4 +1,4 @@
-package smart.gui.components.buttons
+package smart.gui.components
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -9,9 +9,9 @@ package smart.gui.components.buttons
 	
 	import smart.gui.components.SG_Component;
 	import smart.gui.components.SG_ComponentType;
-	import smart.gui.components.icons.SG_Icon;
-	import smart.gui.components.text.SG_TextLabel;
-	import smart.gui.components.text.SG_TextStyle;
+	import smart.gui.components.SG_Icon;
+	import smart.gui.components.SG_TextLabel;
+	import smart.gui.components.SG_TextStyle;
 	import smart.gui.constants.SG_ColorFilters;
 	import smart.gui.constants.SG_SkinType;
 	import smart.gui.signals.SG_Signal;

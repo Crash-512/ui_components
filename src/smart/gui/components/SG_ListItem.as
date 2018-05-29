@@ -1,9 +1,8 @@
-package smart.gui.components.list 
+package smart.gui.components
 {
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	
-	import smart.gui.components.text.SG_TextStyle;
 	import smart.gui.skin.SG_GUISkin;
 	
 	public class SG_ListItem extends Sprite

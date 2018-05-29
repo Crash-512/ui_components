@@ -1,8 +1,12 @@
-package smart.gui.components.scroll 
+package smart.gui.components
 {
-	import flash.display.*;
-	import flash.events.*;
-	import flash.geom.*;
+	import flash.display.Shape;
+	import flash.display.Sprite;
+	import flash.display.Stage;
+	import flash.events.Event;
+	import flash.events.MouseEvent;
+	import flash.geom.Point;
+	import flash.geom.Rectangle;
 	
 	import smart.gui.utils.SG_Math;
 	

@@ -1,8 +1,8 @@
 package smart.components
 {
 	import smart.RandomUtils;
-	import smart.gui.components.controllers.SG_Slider;
-	import smart.gui.components.text.SG_TextLabel;
+	import smart.gui.components.SG_Slider;
+	import smart.gui.components.SG_TextLabel;
 	import smart.gui.constants.SG_Align;
 	
 	internal class Slider extends Component

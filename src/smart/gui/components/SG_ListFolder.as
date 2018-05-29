@@ -1,4 +1,4 @@
-package smart.gui.components.list 
+package smart.gui.components
 {
 	import flash.display.Sprite;
 	
@@ -146,16 +146,12 @@ package smart.gui.components.list
 			insertToEnd(item);
 			_list.updateScroll();
 			
-			var event:SG_ListEvent = new SG_ListEvent(SG_ListEvent.ADD_ITEM);
-			event.item = item;
-			_list.dispatchEvent(event);
-			
 			return item;
 		}
 		
 		protected function createItem(label:String):SG_ListItem
 		{
-			var item:SG_ListItem = new _list.itemClass(label, _list);
+			var item:SG_ListItem = new SG_ListItem(label, _list);
 			return item;
 		}
 		
@@ -198,8 +194,6 @@ package smart.gui.components.list
 			item.width = _list.width;
 			item.folder = this; 
 			item.updateSize();
-			
-			_list.dispatchEvent(new SG_ListEvent(SG_ListEvent.REFRESH));
 		}
 		
 		public function addToList(item:SG_ListItem):void

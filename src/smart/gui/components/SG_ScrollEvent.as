@@ -1,4 +1,4 @@
-package smart.gui.components.scroll 
+package smart.gui.components
 {
 	import flash.events.Event;
 	

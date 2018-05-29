@@ -1,10 +1,10 @@
 package smart.gui.components
 {
-	import smart.gui.components.combobox.SG_ComboBox;
-	import smart.gui.components.controllers.SG_Slider;
-	import smart.gui.components.controllers.SG_Stepper;
-	import smart.gui.components.switchers.SG_Switcher;
-	import smart.gui.components.text.SG_TextInput;
+	import smart.gui.components.SG_ComboBox;
+	import smart.gui.components.SG_Slider;
+	import smart.gui.components.SG_Stepper;
+	import smart.gui.components.SG_Switcher;
+	import smart.gui.components.SG_TextInput;
 	import smart.gui.constants.SG_ValueType;
 	import smart.gui.signals.SG_Signal;
 	
@@ -25,11 +25,6 @@ package smart.gui.components
 		
 		public function dispatchValue(value:*, hotUpdate:Boolean = false):void
 		{
-			var valueEvent:SG_ValueEvent = new SG_ValueEvent(SG_ValueEvent.CHANGE_VALUE);
-			valueEvent.variableName = variableName;
-			valueEvent.value = value;
-			valueEvent.hotUpdate = hotUpdate;
-			dispatchEvent(valueEvent);
 			onUpdate.emit(this);
 		}
 		

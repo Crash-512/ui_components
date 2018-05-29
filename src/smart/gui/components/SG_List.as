@@ -1,4 +1,4 @@
-package smart.gui.components.list 
+package smart.gui.components
 {
 	import flash.display.DisplayObject;
 	import flash.display.Shape;
@@ -6,13 +6,6 @@ package smart.gui.components.list
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
-	
-	import smart.gui.components.SG_CenterPoint;
-	import smart.gui.components.SG_Component;
-	import smart.gui.components.SG_ComponentType;
-	import smart.gui.components.scroll.SG_Scroller;
-	import smart.gui.components.text.SG_TextLabel;
-	import smart.gui.components.text.SG_TextStyle;
 	import smart.gui.constants.SG_SkinType;
 	import smart.gui.skin.SG_GUISkin;
 	
@@ -21,29 +14,20 @@ package smart.gui.components.list
 		protected var container:Sprite;
 		protected var _rootFolder:SG_ListFolder;
 		protected var _defaultMessage:SG_TextLabel;
-		protected var _centerPoint:String = SG_CenterPoint.NULL;
 		protected var scroller:SG_Scroller;
 		protected var content:Sprite;
 		
-		public var itemClass:Class;
-		public var folderClass:Class;
-		public var folders:Object = {};
-		public var items:Object = {};
 		public var isComboBox:Boolean;
 		public var listMask:Shape;
 		public var selectedItem:SG_ListItem;
 		public var style:SG_ListStyle;
 		public var currentFolder:SG_ListFolder;
 		
-		public function SG_List(size:int = 1)
+		public function SG_List()
 		{
-			itemClass = SG_ListItem;
-			folderClass = SG_ListFolder;
-			
 			_skinType = SG_SkinType.LIST;
 			redrawSkin();
 			initList();
-
 			type = SG_ComponentType.LIST;
 		}
 		
@@ -84,11 +68,6 @@ package smart.gui.components.list
 			// Events
 			addEventListener(Event.ADDED_TO_STAGE, init);
 			_componentSkin.addEventListener(MouseEvent.CLICK, resetSelection);
-		}
-		
-		private function updateCenterPoint():void
-		{
-			SG_CenterPoint.updateCenter(container, _centerPoint, _componentSkin.getRect(container));
 		}
 		
 		protected function initRootFolder():void
@@ -150,7 +129,6 @@ package smart.gui.components.list
 				selectedItem = null;
 			}
 			currentFolder = _rootFolder;
-			dispatchEvent(new SG_ListEvent(SG_ListEvent.RESET_SELECTION));
 		}
 		
 		public function lockList(timeout:Boolean = false):void
@@ -199,9 +177,7 @@ package smart.gui.components.list
 			}
 			if (event) 
 			{
-				var listEvent:SG_ListEvent = new SG_ListEvent(SG_ListEvent.SELECT_ITEM);
-				listEvent.item = selectedItem;
-				dispatchEvent(listEvent);
+				dispatchEvent(new SG_ListEvent(SG_ListEvent.SELECT_ITEM));
 			}
 		}
 		
@@ -248,13 +224,6 @@ package smart.gui.components.list
 			_componentSkin.height = value;
 			style.redrawList();
 			if (!isComboBox) updateScroll();
-			updateCenterPoint();
-		}
-		
-		public function set centerPoint(value:String):void 
-		{
-			_centerPoint = value;
-			updateCenterPoint();
 		}
 		
 		public function get length():int
@@ -272,12 +241,7 @@ package smart.gui.components.list
 			return _componentSkin.height;
 		}
 		
-		public function get centerPoint():String 
-		{
-			return _centerPoint;
-		}
-		
-		public function get rootFolder():SG_ListFolder 
+		public function get rootFolder():SG_ListFolder
 		{
 			return _rootFolder;
 		}

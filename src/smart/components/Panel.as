@@ -5,16 +5,16 @@ package smart.components
 	import flash.events.MouseEvent;
 	
 	import smart.gui.components.SG_Component;
-	import smart.gui.components.buttons.SG_Button;
-	import smart.gui.components.combobox.SG_ComboBox;
-	import smart.gui.components.controllers.SG_Slider;
-	import smart.gui.components.controllers.SG_Stepper;
-	import smart.gui.components.layouts.SG_Layout;
-	import smart.gui.components.layouts.SG_LayoutH;
-	import smart.gui.components.layouts.SG_LayoutV;
-	import smart.gui.components.switchers.SG_Switcher;
-	import smart.gui.components.text.SG_TextLabel;
-	import smart.gui.components.text.SG_TextStyle;
+	import smart.gui.components.SG_Button;
+	import smart.gui.components.SG_ComboBox;
+	import smart.gui.components.SG_Slider;
+	import smart.gui.components.SG_Stepper;
+	import smart.gui.components.SG_Layout;
+	import smart.gui.components.SG_LayoutH;
+	import smart.gui.components.SG_LayoutV;
+	import smart.gui.components.SG_Switcher;
+	import smart.gui.components.SG_TextLabel;
+	import smart.gui.components.SG_TextStyle;
 	import smart.gui.constants.SG_Align;
 	import smart.gui.constants.SG_SkinType;
 	import smart.gui.signals.SG_Signal;

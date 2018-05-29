@@ -1,4 +1,4 @@
-package smart.gui.components.icons
+package smart.gui.components
 {
 	public class SG_IconType
 	{

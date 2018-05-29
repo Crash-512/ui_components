@@ -1,6 +1,6 @@
 package smart.components
 {
-	import smart.gui.components.switchers.SG_Switcher;
+	import smart.gui.components.SG_Switcher;
 	
 	internal class Switcher extends Component
 	{

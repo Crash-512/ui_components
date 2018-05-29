@@ -3,12 +3,9 @@ package smart.components
 	import flash.display.Sprite;
 	import flash.events.Event;
 	
-	import smart.gui.SG_DarkSkin;
-	
 	import smart.gui.SG_Fonts;
-	import smart.gui.components.buttons.SG_Button;
+	import smart.gui.components.SG_Button;
 	import smart.gui.signals.SG_Signal;
-	import smart.gui.skin.SG_GUISkin;
 	import smart.modern_gui.scroll.MG_ScrollPane;
 	
 	public class PanelsContainer extends Sprite
@@ -22,7 +19,6 @@ package smart.components
 		public function PanelsContainer(height:int = 900)
 		{
 			SG_Fonts.initFonts();
-			SG_GUISkin.defaultSkin = new SG_DarkSkin();
 			
 			_panels = new <Panel>[];
 			_layout = new Layout();

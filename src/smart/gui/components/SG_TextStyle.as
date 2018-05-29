@@ -1,4 +1,4 @@
-package smart.gui.components.text
+package smart.gui.components
 {
 	import smart.gui.SG_Fonts;
 	import smart.gui.constants.SG_Align;

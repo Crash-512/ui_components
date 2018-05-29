@@ -1,6 +1,6 @@
 package smart.components
 {
-	import smart.gui.components.layouts.SG_LayoutV;
+	import smart.gui.components.SG_LayoutV;
 	
 	internal class Layout extends SG_LayoutV
 	{

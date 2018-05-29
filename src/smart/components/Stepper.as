@@ -1,7 +1,7 @@
 package smart.components
 {
 	import smart.RandomUtils;
-	import smart.gui.components.controllers.SG_Stepper;
+	import smart.gui.components.SG_Stepper;
 	
 	internal class Stepper extends Component
 	{

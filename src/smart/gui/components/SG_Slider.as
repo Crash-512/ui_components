@@ -1,4 +1,4 @@
-package smart.gui.components.controllers 
+package smart.gui.components
 {
 	import flash.display.*;
 	import flash.events.*;

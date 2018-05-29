@@ -1,4 +1,4 @@
-package smart.gui.components.list 
+package smart.gui.components
 {
 	import flash.display.Graphics;
 	
@@ -33,7 +33,7 @@ package smart.gui.components.list
 		
 		public function get itemColor():uint 
 		{
-			return list.componentSkin.color.getColor(10);
+			return 0x333333;
 		}
 		
 		public function get highlightColor():uint

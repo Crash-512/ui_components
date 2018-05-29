@@ -1,16 +1,16 @@
-package smart.gui.components.controllers 
+package smart.gui.components
 {
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	import smart.gui.components.SG_ComponentType;
 	import smart.gui.components.SG_DynamicComponent;
-	import smart.gui.components.buttons.SG_Button;
-	import smart.gui.components.buttons.SG_ButtonType;
-	import smart.gui.components.icons.SG_Icon;
-	import smart.gui.components.icons.SG_IconType;
-	import smart.gui.components.text.SG_TextInput;
-	import smart.gui.components.text.SG_TextInputType;
+	import smart.gui.components.SG_Button;
+	import smart.gui.components.SG_ButtonType;
+	import smart.gui.components.SG_Icon;
+	import smart.gui.components.SG_IconType;
+	import smart.gui.components.SG_TextInput;
+	import smart.gui.components.SG_TextInputType;
 	import smart.gui.constants.SG_ValueType;
 	import smart.gui.skin.SG_GUISkin;
 	import smart.gui.utils.SG_Math;

@@ -6,7 +6,7 @@ package smart.gui.components
 	import smart.gui.skin.SG_ComponentSkin;
 	import smart.gui.skin.SG_GUISkin;
 	
-	public class SG_Component extends Sprite implements SG_IEnabledObject
+	public class SG_Component extends Sprite
 	{
 		public var type:String;
 		public var debugMode:Boolean;

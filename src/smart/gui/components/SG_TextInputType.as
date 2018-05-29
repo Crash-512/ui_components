@@ -1,4 +1,4 @@
-package smart.gui.components.text 
+package smart.gui.components
 {
 	public class SG_TextInputType 
 	{

@@ -1,4 +1,4 @@
-package smart.gui.components.buttons 
+package smart.gui.components
 {
 	public class SG_ButtonType 
 	{

@@ -1,16 +1,13 @@
-package smart.gui.components.layouts 
+package smart.gui.components
 {
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	
-	import smart.gui.components.SG_CenterPoint;
-	
 	import smart.gui.components.SG_Sprite;
 	
 	public class SG_Layout extends SG_Sprite
 	{
-		public var debugMode:Boolean;
 		public var autoUpdate:Boolean = true;
 		public var enableAlign:Boolean = true;
 		public var useRectAlign:Boolean = true;
@@ -23,11 +20,10 @@ package smart.gui.components.layouts
 		protected var _align:String;
 		
 		
-		public function SG_Layout(spacing:int, align:String, centerPoint:String)
+		public function SG_Layout(spacing:int, align:String)
 		{
 			_align = align;
 			_spacing = spacing;
-			_centerPoint = centerPoint;
 			content = new Sprite();
 			super.addChild(content);
 			
@@ -36,7 +32,6 @@ package smart.gui.components.layouts
 		
 		public function update(event:Event = null):void 
 		{
-			SG_CenterPoint.updateCenter(content, _centerPoint);
 			content.x += _paddingH;
 			content.y += _paddingV;
 		}
@@ -115,13 +110,7 @@ package smart.gui.components.layouts
 			update();
 		}
 		
-		override public function set centerPoint(value:String):void 
-		{
-			_centerPoint = value;
-			update();
-		}
-		
-		public function set paddingV(value:uint):void 
+		public function set paddingV(value:uint):void
 		{
 			_paddingV = value;
 			update();

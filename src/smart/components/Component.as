@@ -1,8 +1,8 @@
 package smart.components
 {
-	import smart.gui.components.layouts.SG_LayoutH;
-	import smart.gui.components.text.SG_TextLabel;
-	import smart.gui.components.text.SG_TextStyle;
+	import smart.gui.components.SG_LayoutH;
+	import smart.gui.components.SG_TextLabel;
+	import smart.gui.components.SG_TextStyle;
 	import smart.gui.constants.SG_Align;
 	import smart.gui.constants.SG_TextColors;
 	

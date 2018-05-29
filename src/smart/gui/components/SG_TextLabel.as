@@ -1,14 +1,10 @@
-package smart.gui.components.text 
+package smart.gui.components
 {
 	import flash.text.AntiAliasType;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFieldType;
 	import flash.text.TextFormat;
-	
-	import smart.gui.components.SG_CenterPoint;
-	import smart.gui.components.SG_ComponentType;
-	import smart.gui.components.SG_DynamicComponent;
 	import smart.gui.constants.SG_Align;
 	
 	public class SG_TextLabel extends SG_DynamicComponent
@@ -25,7 +21,6 @@ package smart.gui.components.text
 		protected var _color:uint;
 		protected var _text:String;
 		protected var _align:String = "left";
-		protected var _centerPoint:String = SG_CenterPoint.NULL;
 		protected var textFormat:TextFormat;
 		
 		
@@ -63,8 +58,6 @@ package smart.gui.components.text
 		{
 			textField.setTextFormat(textFormat);
 			textField.defaultTextFormat = textFormat;
-			
-			SG_CenterPoint.updateCenter(textField, _centerPoint);
 		}
 		
 		protected function updateWidth():void 
@@ -172,17 +165,10 @@ package smart.gui.components.text
 		{
 			_align = value;
 			textFormat.align = _align;
-			//textField.autoSize = _objectsAlignV;
 			update();
 		}
 		
-		public function set centerPoint(value:String):void
-		{
-			_centerPoint = value;
-			update();
-		}
-		
-		public function set multiline(value:Boolean):void 
+		public function set multiline(value:Boolean):void
 		{
 			textField.multiline = value;
 			textField.wordWrap = value;

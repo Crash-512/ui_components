@@ -1,4 +1,4 @@
-package smart.gui.components.combobox 
+package smart.gui.components
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -8,15 +8,15 @@ package smart.gui.components.combobox
 	
 	import smart.gui.components.SG_ComponentType;
 	import smart.gui.components.SG_DynamicComponent;
-	import smart.gui.components.buttons.SG_Button;
-	import smart.gui.components.buttons.SG_ButtonType;
-	import smart.gui.components.icons.SG_Icon;
-	import smart.gui.components.icons.SG_IconType;
-	import smart.gui.components.list.SG_List;
-	import smart.gui.components.list.SG_ListEvent;
-	import smart.gui.components.list.SG_ListItem;
-	import smart.gui.components.text.SG_TextLabel;
-	import smart.gui.components.text.SG_TextStyle;
+	import smart.gui.components.SG_Button;
+	import smart.gui.components.SG_ButtonType;
+	import smart.gui.components.SG_Icon;
+	import smart.gui.components.SG_IconType;
+	import smart.gui.components.SG_List;
+	import smart.gui.components.SG_ListEvent;
+	import smart.gui.components.SG_ListItem;
+	import smart.gui.components.SG_TextLabel;
+	import smart.gui.components.SG_TextStyle;
 	import smart.gui.constants.SG_SkinType;
 	import smart.gui.constants.SG_ValueType;
 	import smart.gui.skin.SG_GUISkin;
@@ -37,7 +37,6 @@ package smart.gui.components.combobox
 		protected var locked:Boolean;
 		
 		private static const SHADOW_FILTER:DropShadowFilter = new DropShadowFilter(4, 90, 0, 0.15, 12, 12);
-		
 		
 		public function SG_ComboBox(defaultText:String = "Select Item", items:Vector.<String> = null) 
 		{
@@ -163,7 +162,7 @@ package smart.gui.components.combobox
 		
 		protected function initList():void 
 		{
-			list = new SG_List(1);
+			list = new SG_List();
 			list.visible = false;
 		}
 		
