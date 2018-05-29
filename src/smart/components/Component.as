@@ -4,7 +4,6 @@ package smart.components
 	import smart.gui.components.SG_TextLabel;
 	import smart.gui.components.SG_TextStyle;
 	import smart.gui.constants.SG_Align;
-	import smart.gui.constants.SG_TextColors;
 	
 	public class Component extends SG_LayoutH
 	{
@@ -23,7 +22,7 @@ package smart.components
 		public static function createLabel(text:String, align:String, width:int = 150):SG_TextLabel
 		{
 			var label:SG_TextLabel = new SG_TextLabel(text, SG_TextStyle.label_medium, align);
-			label.color = SG_TextColors.BRIGHT_VERY;
+			label.color = 0xC5C5C5;
 			label.bold = true;
 			label.width = width;
 			return label;

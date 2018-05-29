@@ -6,10 +6,7 @@ package smart.gui.components
 	
 	public class SG_ListFolder extends SG_ListItem
 	{
-		private var separator:Sprite;
-		
 		protected var _opened:Boolean;
-		
 		public var lastItem:SG_ListItem;
 		public var firstItem:SG_ListItem;
 		internal var content:Sprite;
@@ -66,10 +63,7 @@ package smart.gui.components
 			if (background)
 			{
 				background.graphics.clear();
-				
-				if (highlight)  background.graphics.beginFill(_list.style.highlightColor);
-				else            background.graphics.beginFill(_list.style.itemColor);
-				
+				background.graphics.beginFill(highlight ? _list.style.highlightColor : _list.style.itemColor);
 				background.graphics.drawRect(0, 0, _width, _height);
 				background.graphics.endFill();
 			}
@@ -98,43 +92,6 @@ package smart.gui.components
 				item = item.next;
 			}
 			background.width = _list.width;
-		}
-		
-		public function getItemsList(withClosed:Boolean = true, withFolders:Boolean = true, withItems:Boolean = true):Array 
-		{
-			var folder:SG_ListFolder = this;
-			var item:SG_ListItem = this;
-			var items:Array = [];
-			
-			while (true)
-			{
-				if (!item || item.isEmpty)
-				{
-					item = folder.next;
-					folder = folder.folder;
-					if (!item)	break;
-					else		continue;
-				}
-				else if (item.isFolder)
-				{
-					folder = item as SG_ListFolder;
-					
-					if (folder != this) return items;
-					
-					if (withFolders) items.push(folder);
-					
-					if (folder.opened || withClosed) 
-					{
-						item = folder.firstItem;
-						continue;
-					}
-					else folder = folder.folder;
-				}
-				else if (withItems) items.push(item);
-				
-				item = item.next;
-			}
-			return items;
 		}
 		
 		public function addItem(label:String):SG_ListItem

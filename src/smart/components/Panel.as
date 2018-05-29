@@ -16,7 +16,7 @@ package smart.components
 	import smart.gui.components.SG_TextLabel;
 	import smart.gui.components.SG_TextStyle;
 	import smart.gui.constants.SG_Align;
-	import smart.gui.constants.SG_SkinType;
+	import smart.gui.skin.SG_SkinType;
 	import smart.gui.signals.SG_Signal;
 	
 	public class Panel extends SG_Component

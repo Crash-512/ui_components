@@ -2,12 +2,11 @@ package smart.gui.components
 {
 	import flash.display.*;
 	import flash.events.*;
-	import smart.gui.components.SG_Component;
-	import smart.gui.components.SG_ComponentType;
-	import smart.gui.components.SG_DynamicComponent;
+	
 	import smart.gui.constants.*;
 	import smart.gui.skin.SG_ComponentSkin;
-
+	import smart.gui.skin.SG_SkinType;
+	
 	public class SG_Slider extends SG_DynamicComponent
 	{
 		private var _value:Number;
@@ -39,15 +38,9 @@ package smart.gui.components
 			
 			init();
 
-			type = SG_ComponentType.SLIDER;
-			valueType = SG_ValueType.NUMBER;
+			type = SLIDER;
 			
 			_defaultValue = value;
-		}
-		
-		override public function clone():SG_DynamicComponent
-		{
-			return new SG_Slider(_minValue, _maxValue, _tickInterval, _snapInterval);
 		}
 		
 		private function init():void
@@ -187,9 +180,7 @@ package smart.gui.components
 			value = _value;
 		}
 		
-		
 		// *** PROPERTIES *** //
-		
 		
 		public function set value(value:Number):void
 		{
@@ -204,28 +195,6 @@ package smart.gui.components
 			barMask.width = pickerSprite.x;
 			
 			_value = value;
-		}
-		
-		override public function set enabled(value:Boolean):void
-		{
-			_enabled = value;
-			
-			if (_enabled)
-			{
-				activeBar.filters = [];
-				bar.filters = [];
-				picker.filters = [];
-				mouseEnabled = true;
-				mouseChildren = true;
-			}
-			else
-			{
-				activeBar.filters = [SG_Filters.DISABLED];
-				bar.filters = [SG_Filters.DISABLED];
-				picker.filters = [SG_Filters.DISABLED];
-				mouseEnabled = false;
-				mouseChildren = false;
-			}
 		}
 		
 		override public function set width(width:Number):void

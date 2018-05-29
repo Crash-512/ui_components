@@ -1,4 +1,4 @@
-package smart.gui.constants
+package smart.gui.skin
 {
 	public class SG_SkinType
 	{

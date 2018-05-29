@@ -5,6 +5,7 @@ package smart.gui.components
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFieldType;
 	import flash.text.TextFormat;
+	
 	import smart.gui.constants.SG_Align;
 	
 	public class SG_TextLabel extends SG_DynamicComponent
@@ -29,7 +30,7 @@ package smart.gui.components
 			init(text, style);
 			if (!style) this.align = align;
 			
-			type = SG_ComponentType.TEXT_LABEL;
+			type = TEXT_LABEL;
 		}
 		
 		protected function init(text:String, style:SG_TextStyle):void 

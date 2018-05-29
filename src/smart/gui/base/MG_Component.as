@@ -1,43 +1,35 @@
-package smart.modern_gui.base
+package smart.gui.base
 {
 	import flash.display.Stage;
 	import flash.events.EventDispatcher;
 	
-	import smart.modern_gui.base.MG_Sprite;
-	import smart.modern_gui.mg_internal;
-	import smart.modern_gui.signals.MG_Signal;
-	import smart.modern_gui.skin.MG_BaseSkin;
+	import smart.gui.signals.SG_Signal;
 	
-	use namespace mg_internal;
-
 	public class MG_Component extends EventDispatcher
 	{
-		mg_internal var newX:int;
-		mg_internal var newY:int;
-		mg_internal var container:MG_Container;
-		mg_internal var prev:MG_Component;
-		mg_internal var next:MG_Component;
-		
-		public var debug:Boolean;
+		internal var newX:int;
+		internal var newY:int;
+		internal var container:MG_Container;
+		internal var prev:MG_Component;
+		internal var next:MG_Component;
 		
 		protected var _widthInPercent:uint;
 		protected var _heightInPercent:uint;
 		protected var _enabled:Boolean;
 		
-		protected var _skin:MG_BaseSkin;
 		protected var _display:MG_Sprite;
 		protected var _lastChild:MG_Component;
 		protected var _firstChild:MG_Component;
 		protected var _hasChildren:Boolean;
 		
-		private var _onRedraw:MG_Signal;
+		private var _onRedraw:SG_Signal;
 		
 		  
 		public function MG_Component()
 		{
 			_enabled = true;
 			_display = new MG_Sprite(this);
-			_onRedraw = MG_Signal.create();
+			_onRedraw = SG_Signal.create();
 		}
 		
 		protected function addChild(child:MG_Component):void
@@ -60,7 +52,7 @@ package smart.modern_gui.base
 			
 		}
 		
-		mg_internal function applyChanges():void 
+		internal function applyChanges():void
 		{
 			_display.x = newX;
 			_display.y = newY;
@@ -69,7 +61,7 @@ package smart.modern_gui.base
 		public function redraw():void
 		{
 			_display.clearCanvas();
-			_onRedraw.dispatch(this);
+			_onRedraw.emit(this);
 		}
 		
 		public function setPosition(x:int, y:int):void 
@@ -152,7 +144,7 @@ package smart.modern_gui.base
 			return _display.mouseY;
 		}
 		
-		public function get onRedraw():MG_Signal
+		public function get onRedraw():SG_Signal
 		{
 			return _onRedraw;
 		}

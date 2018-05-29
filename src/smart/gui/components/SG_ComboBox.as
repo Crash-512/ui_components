@@ -6,19 +6,7 @@ package smart.gui.components
 	import flash.filters.DropShadowFilter;
 	import flash.geom.Point;
 	
-	import smart.gui.components.SG_ComponentType;
-	import smart.gui.components.SG_DynamicComponent;
-	import smart.gui.components.SG_Button;
-	import smart.gui.components.SG_ButtonType;
-	import smart.gui.components.SG_Icon;
-	import smart.gui.components.SG_IconType;
-	import smart.gui.components.SG_List;
-	import smart.gui.components.SG_ListEvent;
-	import smart.gui.components.SG_ListItem;
-	import smart.gui.components.SG_TextLabel;
-	import smart.gui.components.SG_TextStyle;
-	import smart.gui.constants.SG_SkinType;
-	import smart.gui.constants.SG_ValueType;
+	import smart.gui.skin.SG_SkinType;
 	import smart.gui.skin.SG_GUISkin;
 	
 	public class SG_ComboBox extends SG_DynamicComponent
@@ -45,8 +33,7 @@ package smart.gui.components
 			init();
 			if (items) setItemsFromArray(items);
 			
-			type = SG_ComponentType.COMBO_BOX;
-			valueType = SG_ValueType.STRING;
+			type = COMBO_BOX;
 		}
 		
 		override public function setSkin(skin:SG_GUISkin):void
@@ -90,7 +77,7 @@ package smart.gui.components
 		{
 			var style:SG_TextStyle;
 			
-			style = SG_TextStyle.comboBox_medium.clone();
+			style = SG_TextStyle.textInput.clone();
 			button.setSize(18, 24);
 			_componentSkin.height = 24;
 			style.color = _skin.textColor;
@@ -100,7 +87,7 @@ package smart.gui.components
 		
 		private function init():void
 		{
-			button = new SG_Button("", new SG_Icon(SG_IconType.DROP), SG_ButtonType.RIGHT);
+			button = new SG_Button("", new SG_Icon(SG_Icon.DROP), SG_Button.RIGHT);
 			button.enableEvents(false);
 			addChild(button);
 
@@ -128,7 +115,7 @@ package smart.gui.components
 			addEventListener(MouseEvent.MOUSE_OUT, outBox);
 			addEventListener(MouseEvent.MOUSE_DOWN, dropList);
 			addEventListener(MouseEvent.MOUSE_WHEEL, scrollBox);
-			list.addEventListener(SG_ListEvent.SELECT_ITEM, changeItem);
+			list.onSelect.add(changeItem);
 			refresh();
 		}
 		
@@ -229,7 +216,7 @@ package smart.gui.components
 			lockEvent = false;
 		}
 		
-		private function changeItem(event:Event):void 
+		private function changeItem():void
 		{
 			selectItem(list.selectedItem);
 			dispatchEvent(new Event(Event.CHANGE));

@@ -1,9 +1,5 @@
-package smart.modern_gui.base
+package smart.gui.base
 {
-	import smart.modern_gui.mg_internal;
-	
-	use namespace mg_internal;
-
 	public class MG_Container extends MG_ResizableComponent
 	{
 		  

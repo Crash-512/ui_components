@@ -8,8 +8,6 @@ package smart.gui.components
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
-	import smart.gui.utils.SG_Math;
-	
 	public class SG_Scroller extends Sprite
 	{
 		public var smoothScroll:Number = 0.1;
@@ -231,9 +229,6 @@ package smart.gui.components
 				{
 					manual = false;
 					startScroll();
-					
-					var event:SG_ScrollEvent = new SG_ScrollEvent(SG_ScrollEvent.START_SCROLL);
-					dispatchEvent(event);
 					autoScroll = true;
 				}
 				else
@@ -269,7 +264,7 @@ package smart.gui.components
 			
 			if (vertical)
 			{
-				value = SG_Math.smoothMove(_content.y, scrollPos, smoothScroll, false);
+				value = smoothMove(_content.y, scrollPos, smoothScroll, false);
 				
 				if (scrollPos < _content.y)	_content.y = Math.floor(value);
 				else						_content.y = Math.ceil(value);
@@ -278,7 +273,7 @@ package smart.gui.components
 			}
 			else
 			{
-				value = SG_Math.smoothMove(_content.x, scrollPos, smoothScroll, false);
+				value = smoothMove(_content.x, scrollPos, smoothScroll, false);
 				
 				if (scrollPos < _content.x)	_content.x = Math.floor(value);
 				else						_content.x = Math.ceil(value);
@@ -292,8 +287,6 @@ package smart.gui.components
 		{
 			if (autoScroll)
 			{
-				var event:SG_ScrollEvent = new SG_ScrollEvent(SG_ScrollEvent.STOP_SCROLL);
-				dispatchEvent(event);
 				autoScroll = false;
 			}
 			
@@ -455,10 +448,22 @@ package smart.gui.components
 			}
 		}
 		
-		public function get autoHide():Boolean
-		{
-			return _autoHide;
-		}
+		private static const MIN_VALUE:Number = 0.001;
 		
+		private static function smoothMove(initPos:Number, endPos:Number, k:Number = 0.1, round:Boolean = false):Number
+		{
+			var value:Number = k * (endPos - initPos);
+			
+			if (value > 0)
+			{
+				if (value < MIN_VALUE) value = MIN_VALUE;
+			}
+			else
+			{
+				if (value > -MIN_VALUE) value = -MIN_VALUE;
+			}
+			var result:Number = initPos + value;
+			return (round) ? (initPos < endPos) ? Math.ceil(result) : Math.floor(result) : result;
+		}
 	}
 }

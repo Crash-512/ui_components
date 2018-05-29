@@ -7,10 +7,9 @@ package smart.gui.components
 	import flash.events.TextEvent;
 	import flash.text.TextFieldAutoSize;
 	import flash.ui.Keyboard;
-
-	import smart.gui.constants.SG_SkinType;
-	import smart.gui.constants.SG_ValueType;
-
+	
+	import smart.gui.skin.SG_SkinType;
+	
 	public class SG_TextInput extends SG_TextLabel
 	{
 		protected var _inputType:String;
@@ -25,14 +24,13 @@ package smart.gui.components
 		
 		public function SG_TextInput(text:String = "", inputType:String = SG_TextInputType.STRING)
 		{
-			super(text, SG_TextStyle.textInput_medium);
+			super(text, SG_TextStyle.textInput);
 			this.inputType = inputType;
 			this.text = text;
 			initComponents();
 			if (text != "") checkValueAfter();
 
-			type = SG_ComponentType.TEXT_INPUT;
-			valueType = SG_ValueType.STRING;
+			type = TEXT_INPUT;
 		}
 		
 		override public function setSize(width:uint, height:uint = 0):void

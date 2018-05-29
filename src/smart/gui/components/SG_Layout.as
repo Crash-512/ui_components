@@ -4,9 +4,7 @@ package smart.gui.components
 	import flash.display.Sprite;
 	import flash.events.Event;
 	
-	import smart.gui.components.SG_Sprite;
-	
-	public class SG_Layout extends SG_Sprite
+	public class SG_Layout extends Sprite
 	{
 		public var autoUpdate:Boolean = true;
 		public var enableAlign:Boolean = true;
@@ -19,7 +17,6 @@ package smart.gui.components
 		protected var _spacing:int = 10;
 		protected var _align:String;
 		
-		
 		public function SG_Layout(spacing:int, align:String)
 		{
 			_align = align;
@@ -28,6 +25,18 @@ package smart.gui.components
 			super.addChild(content);
 			
 			addEventListener(Event.ADDED_TO_STAGE, update);
+		}
+		
+		public function setPosition(x:int = 0, y:int = 0):void
+		{
+			this.x = x;
+			this.y = y;
+		}
+		
+		public function setSize(width:int, height:int):void
+		{
+			this.width = width;
+			this.height = height;
 		}
 		
 		public function update(event:Event = null):void 
@@ -88,15 +97,7 @@ package smart.gui.components
 			else			return objects;
 		}
 		
-		override public function removeAll():void 
-		{
-			while (content.numChildren != 0) content.removeChildAt(0);
-			update();
-		}
-		
-
 		// *** PROPERTIES *** //
-
 		
 		public function set spacing(value:int):void 
 		{

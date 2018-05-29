@@ -2,11 +2,11 @@ package smart.components
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.text.Font;
 	
-	import smart.gui.SG_Fonts;
 	import smart.gui.components.SG_Button;
 	import smart.gui.signals.SG_Signal;
-	import smart.modern_gui.scroll.MG_ScrollPane;
+	import smart.gui.scroll.MG_ScrollPane;
 	
 	public class PanelsContainer extends Sprite
 	{
@@ -18,7 +18,8 @@ package smart.components
 		
 		public function PanelsContainer(height:int = 900)
 		{
-			SG_Fonts.initFonts();
+			Font.registerFont(FontPtSans);
+			Font.registerFont(FontPtSansBold);
 			
 			_panels = new <Panel>[];
 			_layout = new Layout();

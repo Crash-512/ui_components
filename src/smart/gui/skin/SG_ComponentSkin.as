@@ -4,7 +4,7 @@ package smart.gui.skin
 	import flash.geom.Matrix;
 	import flash.geom.Rectangle;
 	
-	import smart.gui.constants.SG_SkinType;
+	import smart.gui.skin.SG_SkinType;
 	
 	public class SG_ComponentSkin extends Sprite
 	{

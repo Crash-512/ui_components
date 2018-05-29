@@ -1,36 +1,32 @@
-package smart.modern_gui.scroll
+package smart.gui.scroll
 {
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
 	
+	import smart.gui.base.MG_ResizableComponent;
 	import smart.gui.signals.SG_Signal;
-	
-	import smart.modern_gui.base.MG_ResizableComponent;
-	import smart.modern_gui.data.MG_Size;
-	import smart.modern_gui.signals.MG_Signal;
 	
 	public class MG_ScrollPane extends MG_ResizableComponent
 	{
 		private var _content:Sprite;
-		private var _scrollBar:MG_ScrollBarY;
-		private var _onScroll:MG_Signal;
+		private var _scrollBar:MG_ScrollBar;
+		private var _onScroll:SG_Signal;
 		private var _onScrolled:SG_Signal;
 		
-		private static const DEFAULT_SIZE:MG_Size = new MG_Size(100, 100);
+		private static const DEFAULT_SIZE:int = 100;
 		
-		  
 		public function MG_ScrollPane(content:Sprite)
 		{
 			super();
 			
-			_width = DEFAULT_SIZE.width;
-			_height = DEFAULT_SIZE.height;
+			_width = DEFAULT_SIZE;
+			_height = DEFAULT_SIZE;
 			
-			_onScroll = new MG_Signal();
+			_onScroll = new SG_Signal();
 			_onScrolled = new SG_Signal();
-			_scrollBar = new MG_ScrollBarY(this, _onScroll);
+			_scrollBar = new MG_ScrollBar(this, _onScroll);
 			_scrollBar.onScrolled.add(onContentScrolled);
 			
 			addChild(_scrollBar);

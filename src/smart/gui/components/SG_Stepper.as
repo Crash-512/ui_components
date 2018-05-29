@@ -3,17 +3,7 @@ package smart.gui.components
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
-	import smart.gui.components.SG_ComponentType;
-	import smart.gui.components.SG_DynamicComponent;
-	import smart.gui.components.SG_Button;
-	import smart.gui.components.SG_ButtonType;
-	import smart.gui.components.SG_Icon;
-	import smart.gui.components.SG_IconType;
-	import smart.gui.components.SG_TextInput;
-	import smart.gui.components.SG_TextInputType;
-	import smart.gui.constants.SG_ValueType;
 	import smart.gui.skin.SG_GUISkin;
-	import smart.gui.utils.SG_Math;
 	
 	public class SG_Stepper extends SG_TextInput
 	{
@@ -52,13 +42,7 @@ package smart.gui.components
 			super(SG_TextInputType.FLOAT, String(value));
 			updateInputType();
 
-			type = SG_ComponentType.STEPPER;
-			valueType = SG_ValueType.NUMBER;
-		}
-		
-		override public function clone():SG_DynamicComponent
-		{
-			return new SG_Stepper(_value, _step, _minValue, _maxValue);
+			type = STEPPER;
 		}
 		
 		override public function setSkin(skin:SG_GUISkin):void
@@ -83,11 +67,11 @@ package smart.gui.components
 		
 		override protected function initComponents():void 
 		{
-			btnReset = new SG_Button("", new SG_Icon(SG_IconType.CROSS), SG_ButtonType.LEFT);
+			btnReset = new SG_Button("", new SG_Icon(SG_Icon.CROSS), SG_Button.LEFT);
 			btnReset.width = BTN_SIZE;
 			addChild(btnReset);
 			
-			btnStep = new SG_Button("", new SG_Icon(SG_IconType.STEPPER), SG_ButtonType.RIGHT);
+			btnStep = new SG_Button("", new SG_Icon(SG_Icon.STEPPER), SG_Button.RIGHT);
 			btnStep.width = BTN_SIZE;
 			addChild(btnStep);
 			
@@ -208,7 +192,7 @@ package smart.gui.components
 			if (newValue < _minValue) newValue = _minValue;
 			if (newValue > _maxValue) newValue = _maxValue;
 			
-			value = SG_Math.roundTo(newValue, roundIndex);
+			value = Number(newValue.toFixed(roundIndex));
 			if (event) dispatchEvent(new Event(Event.CHANGE));
 		}
 		

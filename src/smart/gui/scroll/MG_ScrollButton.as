@@ -1,21 +1,23 @@
-package smart.modern_gui.scroll
+package smart.gui.scroll
 {
-	import smart.modern_gui.base.MG_Sprite;
+	import smart.gui.base.MG_Sprite;
 	
-	import smart.modern_gui.buttons.MG_Button;
-	import smart.modern_gui.constants.MG_Colors;
+	import smart.gui.base.MG_Button;
+	import smart.gui.constants.MG_Colors;
 	
 	internal class MG_ScrollButton extends MG_Button
 	{
 		private var _icon:MG_Sprite;
 		
 		private var _iconNormalColor:uint = MG_Colors.GRAY_BRIGHT_1;
-		private var _iconOverColor:uint = MG_Colors.GRAY_BRIGHT_3;
+		private var _iconOverColor:uint = MG_Colors.GRAY_BRIGHT_2;
 		private var _iconPressedColor:uint = MG_Colors.GRAY_BRIGHT_1;
 		
 		private static const SIZE:int = MG_ScrollBar.THICKNESS;
 		private static const ICON_POINTS:Array = [0,0, 3,3, 5,1, 0,-4, -5,1, -3,3];
 		
+		public static const UP:int = 0;
+		public static const DOWN:int = 1;
 		  
 		public function MG_ScrollButton()
 		{
@@ -24,9 +26,9 @@ package smart.modern_gui.scroll
 			_autoWidth = false;
 			_autoHeight = false;
 			
-			_normalColor = MG_Colors.GRAY_DARK_2;
-			_overColor = MG_Colors.GRAY_DARK_3;
-			_pressedColor = MG_Colors.GRAY_DARK_2;
+			_normalColor = MG_Colors.GRAY_DARK_1;
+			_overColor = MG_Colors.GRAY_DARK_2;
+			_pressedColor = MG_Colors.GRAY_DARK_1;
 			
 			_icon = new MG_Sprite();
 			_icon.setPosition(SIZE/2, SIZE/2);
@@ -39,10 +41,8 @@ package smart.modern_gui.scroll
 		{
 			switch (mode)
 			{
-				case MG_ScrollButtonMode.UP:	_icon.rotation = 0;		break;
-				case MG_ScrollButtonMode.DOWN:	_icon.rotation = 180;	break;
-				case MG_ScrollButtonMode.LEFT:	_icon.rotation = -90;	break;
-				case MG_ScrollButtonMode.RIGHT:	_icon.rotation = 90;	break;
+				case UP:	_icon.rotation = 0;		break;
+				case DOWN:	_icon.rotation = 180;	break;
 			}
 		}
 		

@@ -4,24 +4,17 @@ package smart.gui.components
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.filters.DropShadowFilter;
+	import flash.geom.ColorTransform;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
-	import smart.gui.components.SG_Component;
-	import smart.gui.components.SG_ComponentType;
-	import smart.gui.components.SG_Icon;
-	import smart.gui.components.SG_TextLabel;
-	import smart.gui.components.SG_TextStyle;
-	import smart.gui.constants.SG_ColorFilters;
-	import smart.gui.constants.SG_SkinType;
+	import smart.gui.skin.SG_SkinType;
 	import smart.gui.signals.SG_Signal;
 	import smart.gui.skin.SG_GUISkin;
 	
 	public class SG_Button extends SG_Component
 	{
 		public var label:SG_TextLabel;
-		public var enableHover:Boolean;
-		public var tooltip:String = "";
 
 		protected var _labelPosition:Point;
 		protected var _text:String;
@@ -35,11 +28,13 @@ package smart.gui.components
 
 		protected var centered:Boolean;
 
-		protected static const COLOR_TIME:int = 4;
-
 		private static const DEFAULT_WIDTH:int = 100;
-
+		private static const ACTIVE:ColorTransform = new ColorTransform(1,1,1,1,-20,0,20);
+		private static const NORMAL:ColorTransform = new ColorTransform();
 		
+		public static const LEFT:int = 1;
+		public static const RIGHT:int = 2;
+		public static const CENTER:int = 3;
 		public function SG_Button(text:String, icon:Sprite = null, buttonType:int = 0)
 		{
 			_text = text;
@@ -50,7 +45,7 @@ package smart.gui.components
 			
 			init();
 
-			type = SG_ComponentType.BUTTON;
+			type = BUTTON;
 		}
 		
 		private function init():void
@@ -95,7 +90,7 @@ package smart.gui.components
 		
 		protected function createLabel():void
 		{
-			label = new SG_TextLabel(_text, SG_TextStyle.button_medium);
+			label = new SG_TextLabel(_text, SG_TextStyle.button);
 			label.color = _skin.buttonTextColor;
 			label.filters = _labelFilters;
 			addChild(label);
@@ -210,7 +205,7 @@ package smart.gui.components
 		{
 			if (isOver) 
 			{
-				_componentSkin.transform.colorTransform = SG_ColorFilters.RESET_FILTER;
+				_componentSkin.transform.colorTransform = NORMAL;
 				isOver = false;
 			}
 		}
@@ -219,7 +214,7 @@ package smart.gui.components
 		{
 			if (!isOver)
 			{
-				_componentSkin.transform.colorTransform = SG_ColorFilters.BLUE;
+				_componentSkin.transform.colorTransform = ACTIVE;
 				isOver = true;
 			}
 		}

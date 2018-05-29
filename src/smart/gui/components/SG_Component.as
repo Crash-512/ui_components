@@ -2,14 +2,12 @@ package smart.gui.components
 {
 	import flash.display.Sprite;
 	
-	import smart.gui.data.SG_Size;
 	import smart.gui.skin.SG_ComponentSkin;
 	import smart.gui.skin.SG_GUISkin;
 	
 	public class SG_Component extends Sprite
 	{
 		public var type:String;
-		public var debugMode:Boolean;
 
 		protected var _name:String;
 		protected var _skin:SG_GUISkin = SG_GUISkin.defaultSkin;
@@ -19,8 +17,16 @@ package smart.gui.components
 		protected var _width:int;
 		protected var _height:int;
 		
+		public static const BUTTON:String = "button";
+		public static const COMBO_BOX:String = "comboBox";
+		public static const LIST:String = "list";
+		public static const SLIDER:String = "slider";
+		public static const STEPPER:String = "stepper";
+		public static const SWITCHER:String = "switcher";
+		public static const TEXT_INPUT:String = "textInput";
+		public static const TEXT_LABEL:String = "textLabel";
 		
-		public function SG_Component() 
+		public function SG_Component()
 		{
 			super();
 		}
@@ -36,11 +42,11 @@ package smart.gui.components
 		
 		protected function redrawSkin():void
 		{
-			var size:SG_Size;
+			var size:Object;
 			
 			if (_componentSkin) 
 			{
-				size = new SG_Size(_componentSkin.width, _componentSkin.height);
+				size = {width:_componentSkin.width, height:_componentSkin.height};
 				if (_componentSkin.parent) _componentSkin.parent.removeChild(_componentSkin);
 				_componentSkin = null;
 			}
@@ -53,7 +59,7 @@ package smart.gui.components
 			}
 		}
 		
-		public function setSize(width:uint, height:uint = 0):void 
+		public function setSize(width:uint, height:uint = 0):void
 		{
 			_componentSkin.width = width;
 			_componentSkin.height = height;

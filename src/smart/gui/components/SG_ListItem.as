@@ -8,14 +8,12 @@ package smart.gui.components
 	public class SG_ListItem extends Sprite
 	{
 		public var rootFolder:String;
-		public var label:SG_ListLabel;
+		public var label:SG_TextLabel;
 		public var isFolder:Boolean;
 		public var isRoot:Boolean;
-		public var isEmpty:Boolean;
 		public var container:Sprite;
 		public var prev:SG_ListItem;
 		public var next:SG_ListItem;
-		public var data:Object;
 
 		protected var _enabled:Boolean = true;
 		protected var _folder:SG_ListFolder;
@@ -55,7 +53,7 @@ package smart.gui.components
 			redraw();
 			height = 20;
 			
-			label = new SG_ListLabel(text, SG_TextStyle.listLabel_medium);
+			label = new SG_TextLabel(text, SG_TextStyle.listItem);
 			label.enableReduction = true;
 			labelMargin = Math.ceil((background.height - label.height)/2);
 			label.y = labelMargin;

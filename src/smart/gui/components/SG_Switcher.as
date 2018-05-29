@@ -7,13 +7,8 @@ package smart.gui.components
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
 	
-	import smart.gui.components.SG_ComponentType;
-	import smart.gui.components.SG_DynamicComponent;
-	import smart.gui.constants.SG_SkinType;
-	import smart.gui.constants.SG_ValueType;
+	import smart.gui.skin.SG_SkinType;
 	import smart.gui.skin.SG_ComponentSkin;
-	import smart.tweener.SP_Easing;
-	import smart.tweener.SP_Tweener;
 	
 	public class SG_Switcher extends SG_DynamicComponent
 	{
@@ -30,25 +25,23 @@ package smart.gui.components
 		private var textMask:Sprite;
 		private var activeMask:Sprite;
 		private var components:Array;
-
+		private var _animation:Boolean;
+		
+		private static const TEXT_SPEED:Number = 5.2;
+		private static const MASK_SPEED:Number = 0.2;
+		private static const CIRCLE_SPEED:Number = 5;
+		
 		private static const TEXT_OFF_POS:int = -20;
 		private static const TEXT_ON_POS:int = 11;
 		private static const CIRCLE_OFF_POS:int = 10;
 		private static const CIRCLE_ON_POS:int = 40;
-		private static const SWITCH_TIME:int = 5;
 
 		
 		public function SG_Switcher(checked:Boolean = false)
 		{
 			init();
 			this.checked = checked;
-			type = SG_ComponentType.SWITCHER;
-			valueType = SG_ValueType.BOOLEAN;
-		}
-		
-		override public function clone():SG_DynamicComponent
-		{
-			return new SG_Switcher(_checked);
+			type = SWITCHER;
 		}
 		
 		private function init():void
@@ -67,7 +60,7 @@ package smart.gui.components
 			pickerContainer.y = offBackground.height/2;
 			
 			addEventListener(MouseEvent.MOUSE_DOWN, mouseDown);
-			addEventListener(MouseEvent.MOUSE_WHEEL, scrool);
+			addEventListener(Event.ENTER_FRAME, onEnterFrame);
 		}
 		
 		override protected function redrawSkin():void
@@ -133,15 +126,6 @@ package smart.gui.components
 			onBackground.mask = activeMask;
 		}
 		
-		protected function scrool(event:MouseEvent):void
-		{
-			if (event.delta < 0 && _checked)	mouseDown();
-			if (event.delta > 0 && !_checked)	mouseDown();
-			
-			event.stopPropagation();
-			event.stopImmediatePropagation();
-		}
-		
 		private function mouseDown(event:MouseEvent = null):void
 		{
 			checked = !_checked;
@@ -151,6 +135,39 @@ package smart.gui.components
 			{
 				event.stopImmediatePropagation();
 				event.stopPropagation();
+			}
+		}
+		
+		private function onEnterFrame(event:Event):void
+		{
+			if (_animation)
+			{
+				if (_checked)
+				{
+					if (pickerContainer.x < CIRCLE_ON_POS)
+					{
+						text.x += TEXT_SPEED;
+						activeMask.scaleX += MASK_SPEED;
+						pickerContainer.x += CIRCLE_SPEED;
+					}
+					else
+					{
+						stopMotion();
+					}
+				}
+				else
+				{
+					if (pickerContainer.x > CIRCLE_OFF_POS)
+					{
+						text.x -= TEXT_SPEED;
+						activeMask.scaleX -= MASK_SPEED;
+						pickerContainer.x -= CIRCLE_SPEED;
+					}
+					else
+					{
+						stopMotion();
+					}
+				}
 			}
 		}
 		
@@ -164,19 +181,7 @@ package smart.gui.components
 
 			if (stage)
 			{
-				if (_checked)
-				{
-					SP_Tweener.addTween(text, {x:TEXT_ON_POS}, {time:SWITCH_TIME, ease:SP_Easing.quadOut});
-					SP_Tweener.addTween(activeMask, {scaleX:1}, {time:SWITCH_TIME, ease:SP_Easing.quadOut});
-					SP_Tweener.addTween(pickerContainer, {x:CIRCLE_ON_POS}, {time:SWITCH_TIME, ease:SP_Easing.quadOut});
-				}
-				else
-				{
-					SP_Tweener.addTween(text, {x:TEXT_OFF_POS}, {time:SWITCH_TIME, ease:SP_Easing.quadOut});
-					SP_Tweener.addTween(activeMask, {scaleX:0}, {time:SWITCH_TIME, ease:SP_Easing.quadOut});
-					SP_Tweener.addTween(pickerContainer, {x:CIRCLE_OFF_POS}, {time:SWITCH_TIME, ease:SP_Easing.quadOut});
-				}
-				SP_Tweener.addTween(this, {}, {time:SWITCH_TIME, onComplete:stopMotion});
+				_animation = true;
 			}
 			else
 			{
@@ -208,6 +213,8 @@ package smart.gui.components
 			{
 				if (text.contains(textOn))	 text.removeChild(textOn);
 			}
+			text.x = int(text.x);
+			_animation = false;
 		}
 		
 		public function get checked():Boolean

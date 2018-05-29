@@ -47,22 +47,10 @@ package smart.gui.components
 			redrawList();
 		}
 		
-		public function set downCorners(value:Boolean):void
-		{
-			_downCorners = value;
-			redrawList();
-		}
-		
 		public function get upCorners():Boolean
 		{
 			return _upCorners;
 		}
-		
-		public function get downCorners():Boolean
-		{
-			return _downCorners;
-		}
-		
 	}
 
 }

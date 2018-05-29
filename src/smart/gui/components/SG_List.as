@@ -6,16 +6,18 @@ package smart.gui.components
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
-	import smart.gui.constants.SG_SkinType;
+	
+	import smart.gui.skin.SG_SkinType;
+	import smart.gui.signals.SG_Signal;
 	import smart.gui.skin.SG_GUISkin;
 	
 	public class SG_List extends SG_Component
 	{
-		protected var container:Sprite;
-		protected var _rootFolder:SG_ListFolder;
-		protected var _defaultMessage:SG_TextLabel;
-		protected var scroller:SG_Scroller;
-		protected var content:Sprite;
+		private var container:Sprite;
+		private var _rootFolder:SG_ListFolder;
+		private var scroller:SG_Scroller;
+		private var content:Sprite;
+		private var _onSelect:SG_Signal = new SG_Signal();
 		
 		public var isComboBox:Boolean;
 		public var listMask:Shape;
@@ -28,7 +30,7 @@ package smart.gui.components
 			_skinType = SG_SkinType.LIST;
 			redrawSkin();
 			initList();
-			type = SG_ComponentType.LIST;
+			type = LIST;
 		}
 		
 		override public function setSkin(skin:SG_GUISkin):void
@@ -82,21 +84,9 @@ package smart.gui.components
 			stage.stageFocusRect = false;
 		}
 		
-		public function getItemsList(withClosed:Boolean = true, withFolders:Boolean = true, withItems:Boolean = true):Array
-		{
-			return rootFolder.getItemsList(withClosed, withFolders, withItems);
-		}
-		
 		public function refresh():void
 		{
-			var items:Array = getItemsList(false, true, false);
-			var folder:SG_ListFolder;
-			
-			for (var i:int = items.length-1; i>=0; i--)
-			{
-				folder = items[i];
-				folder.refresh();
-			}
+			rootFolder.refresh();
 		}
 		
 		public function resetScroll():void
@@ -177,7 +167,7 @@ package smart.gui.components
 			}
 			if (event) 
 			{
-				dispatchEvent(new SG_ListEvent(SG_ListEvent.SELECT_ITEM));
+				_onSelect.emit();
 			}
 		}
 		
@@ -244,6 +234,10 @@ package smart.gui.components
 		public function get rootFolder():SG_ListFolder
 		{
 			return _rootFolder;
+		}
+		public function get onSelect():SG_Signal
+		{
+			return _onSelect;
 		}
 	}
 }
