@@ -1,4 +1,4 @@
-package smart.gui.signals
+﻿package smart.gui.signals
 {
 	import flash.utils.Dictionary;
 	
@@ -29,11 +29,7 @@ package smart.gui.signals
 		public function dispose():void 
 		{
 			listeners.removeAll();
-			
-			for (var callback:Function in dictionary)
-			{
-				delete dictionary[callback];
-			}
+			dictionary = new Dictionary();
 			pool.push(this);
 		}
 		
