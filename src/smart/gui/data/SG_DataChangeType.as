@@ -1,0 +1,14 @@
+package smart.gui.data
+{
+	public class SG_DataChangeType
+	{
+		public static const CHANGE:String = "change";
+		public static const INVALIDATE:String = "invalidate";
+		public static const INVALIDATE_ALL:String = "invalidateAll";
+		public static const ADD:String = "add";
+		public static const REMOVE:String = "remove";
+		public static const REMOVE_ALL:String = "removeAll";
+		public static const REPLACE:String = "replace";
+		public static const SORT:String = "sort";
+	}
+}

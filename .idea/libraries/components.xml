@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="components" type="flex">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/components.swc!/" />
+      <root url="jar://$PROJECT_DIR$/lib/fonts.swc!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
