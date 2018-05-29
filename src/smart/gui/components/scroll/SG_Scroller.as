@@ -5,9 +5,6 @@ package smart.gui.components.scroll
 	import flash.geom.*;
 	
 	import smart.gui.utils.SG_Math;
-	import smart.gui.cursor.SG_CursorType;
-	import smart.gui.cursor.SG_Mouse;
-	import smart.tweener.SP_Tweener;
 	
 	public class SG_Scroller extends Sprite
 	{
@@ -166,16 +163,12 @@ package smart.gui.components.scroll
 		
 		private function showScroll():void
 		{
-			SP_Tweener.remove(this);
-			SP_Tweener.addTween(this, {alpha:1}, {time:SHOW_TIME});
+			alpha = 1;
 		}
 		
 		private function hideScroll(delay:int):void
 		{
-			if (alpha != 1) delay = 0;
-			
-			SP_Tweener.remove(this);
-			SP_Tweener.addTween(this, {alpha:0}, {time:SHOW_TIME, delay:delay});
+			alpha = 0;
 		}
 		
 		public function scrollUp():void
@@ -317,8 +310,6 @@ package smart.gui.components.scroll
 
 			oldScrollPos = scrollPos;
 
-			SG_Mouse.setCursor(SG_CursorType.HAND);
-			
 			stage.addEventListener(MouseEvent.MIDDLE_MOUSE_UP, stopHandScroll);
 			stage.addEventListener(Event.MOUSE_LEAVE, stopHandScroll);
 			stage.addEventListener(Event.ENTER_FRAME, handScroll);
@@ -342,7 +333,6 @@ package smart.gui.components.scroll
 		
 		private function stopHandScroll(event:Event):void
 		{
-			SG_Mouse.setCursor(SG_CursorType.ARROW);
 			stage.removeEventListener(MouseEvent.MIDDLE_MOUSE_UP, stopHandScroll);
 			stage.removeEventListener(Event.MOUSE_LEAVE, stopHandScroll);
 			stage.removeEventListener(Event.ENTER_FRAME, handScroll);

@@ -6,14 +6,10 @@ package smart.gui.components.combobox
 	import flash.filters.DropShadowFilter;
 	import flash.geom.Point;
 	
-	import smart.gui.components.SG_CenterPoint;
-	
 	import smart.gui.components.SG_ComponentType;
-	
 	import smart.gui.components.SG_DynamicComponent;
 	import smart.gui.components.buttons.SG_Button;
 	import smart.gui.components.buttons.SG_ButtonType;
-	
 	import smart.gui.components.icons.SG_Icon;
 	import smart.gui.components.icons.SG_IconType;
 	import smart.gui.components.list.SG_List;
@@ -23,11 +19,7 @@ package smart.gui.components.combobox
 	import smart.gui.components.text.SG_TextStyle;
 	import smart.gui.constants.SG_SkinType;
 	import smart.gui.constants.SG_ValueType;
-	import smart.gui.data.SG_Size;
-	import smart.gui.data.SP_DataProvider;
 	import smart.gui.skin.SG_GUISkin;
-	import smart.tweener.SP_Easing;
-	import smart.tweener.SP_Tweener;
 	
 	public class SG_ComboBox extends SG_DynamicComponent
 	{
@@ -37,16 +29,12 @@ package smart.gui.components.combobox
 		public var parentContainer:Sprite;
 		
 		private var _dropUpSide:Boolean;
-		private var _size:String;
 		private var defaultText:String;
 		private var button:SG_Button;
 		
 		protected var lockEvent:Boolean;
 		protected var label:SG_TextLabel;
 		protected var locked:Boolean;
-		
-		private static const COLOR_TIME:int = 4;
-		private static const DROP_TIME:int = 5;
 		
 		private static const SHADOW_FILTER:DropShadowFilter = new DropShadowFilter(4, 90, 0, 0.15, 12, 12);
 		
@@ -55,11 +43,9 @@ package smart.gui.components.combobox
 		{
 			this.defaultText = defaultText;
 			_skinType = SG_SkinType.TEXT_INPUT;
-			_size = SG_Size.MEDIUM;
 			init();
 			if (items) setItemsFromArray(items);
 			
-			// TODO при скроле мышкой убирать alpha = 0.5
 			type = SG_ComponentType.COMBO_BOX;
 			valueType = SG_ValueType.STRING;
 		}
@@ -76,18 +62,9 @@ package smart.gui.components.combobox
 		
 		public function setItemsFromArray(items:Vector.<String>):void
 		{
-			for each (var label:String in items) list.addItem(label, null, false);
+			for each (var label:String in items) list.addItem(label);
 			list.refresh();
 			list.resetSelection();
-		}
-		
-		public function addItem(name:String, data:Object = null):SG_ListItem
-		{
-			var item:SG_ListItem = list.addItem(name, null, false);
-			item.data = data;
-			list.refresh();
-			list.resetSelection();
-			return item;
 		}
 		
 		public function selectItem(item:SG_ListItem):void
@@ -114,31 +91,9 @@ package smart.gui.components.combobox
 		{
 			var style:SG_TextStyle;
 			
-			// TODO переделать
-			switch (_size)
-			{
-				case SG_Size.SMALL:   
-				{
-					style = SG_TextStyle.comboBox_small.clone();
-					button.setSize(18, 22);
-					_componentSkin.height = 22;
-					break;
-				}
-				case SG_Size.MEDIUM:  
-				{
-					style = SG_TextStyle.comboBox_medium.clone();
-					button.setSize(18, 24);
-					_componentSkin.height = 24;
-					break;
-				}
-				case SG_Size.LARGE:   
-				{
-					style = SG_TextStyle.comboBox_large.clone();
-					button.setSize(27, 32);
-					_componentSkin.height = 32;
-					break;
-				}
-			}
+			style = SG_TextStyle.comboBox_medium.clone();
+			button.setSize(18, 24);
+			_componentSkin.height = 24;
 			style.color = _skin.textColor;
 			label.style = style;
 			label.y = Math.floor((_componentSkin.height - label.height)/2);
@@ -156,7 +111,6 @@ package smart.gui.components.combobox
 			initList();
 			list.isComboBox = true;
 			list.style.upCorners = false;
-			list.enableDragAndDrop = true;
 			list.componentSkin.filters = [SHADOW_FILTER];
 			list.width = width;
 
@@ -167,12 +121,7 @@ package smart.gui.components.combobox
 			label.color = _skin.textColor;
 			addChild(label);
 			
-			switch (_size)
-			{
-				case SG_Size.SMALL:     _componentSkin.width = 80;  break;
-				case SG_Size.MEDIUM:    _componentSkin.width = 106; break;
-				case SG_Size.LARGE:     _componentSkin.width = 130; break;
-			}
+			_componentSkin.width = 106;
 			updateSize();
 
 			// Events
@@ -187,13 +136,11 @@ package smart.gui.components.combobox
 		private function overBox(event:MouseEvent):void 
 		{
 			button.mouseOver();
-			//SP_Tweener.addTween(_componentSkin, {color:SG_ColorFilters.GREEN}, {time:COLOR_TIME}, SP_Tweener.COLOR);
 		}
 		
 		private function outBox(event:MouseEvent):void 
 		{
 			button.mouseOut();
-			//SP_Tweener.addTween(_componentSkin, {color:SG_ColorFilters.RESET_FILTER}, {time:COLOR_TIME}, SP_Tweener.COLOR);
 		}
 		
 		protected function scrollBox(event:MouseEvent):void 
@@ -217,7 +164,6 @@ package smart.gui.components.combobox
 		protected function initList():void 
 		{
 			list = new SG_List(1);
-			list.setDefaultIcons(null, null);
 			list.visible = false;
 		}
 		
@@ -236,8 +182,8 @@ package smart.gui.components.combobox
 		{
 			var len:int = list.rootFolder.length;
 			
-			if (dropdownCount <= len)	list.height = dropdownCount * list.preset.itemHeight + 1;
-			else						list.height = len * list.preset.itemHeight + 1;
+			if (dropdownCount <= len)	list.height = dropdownCount * 20 + 1;
+			else						list.height = len * 20 + 1;
 		}
 		
 		private function showList():void 
@@ -251,8 +197,8 @@ package smart.gui.components.combobox
 			
 			var listHeight:int;
 			
-			if (dropdownCount <= len)	listHeight = dropdownCount * list.preset.itemHeight + 2;
-			else						listHeight = len * list.preset.itemHeight + 2;
+			if (dropdownCount <= len)	listHeight = dropdownCount * 20 + 2;
+			else						listHeight = len * 20 + 2;
 			
 			var listPos:Point;
 			
@@ -267,8 +213,7 @@ package smart.gui.components.combobox
 			list.resetScroll();
 			list.visible = true;
 			list.unlockList();
-			list.height = 12;
-			SP_Tweener.addTween(list, {height:listHeight}, {time:DROP_TIME, ease:SP_Easing.sineOut, onComplete:list.updateScroll});
+			list.height = listHeight;
 			
 			if (parentContainer) parentContainer.addChild(list);
 			else                 stage.addChild(list);
@@ -280,7 +225,7 @@ package smart.gui.components.combobox
 			{
 				list.lockList();
 				list.stage.removeEventListener(MouseEvent.CLICK, hideList);
-				SP_Tweener.addTween(list, {height:12}, {time:DROP_TIME, removeChild:true, invisible:true, ease:SP_Easing.sineOut, onComplete:list.updateScroll});
+				list.visible = false;
 			}
 			lockEvent = false;
 		}
@@ -304,10 +249,8 @@ package smart.gui.components.combobox
 		{
 			button.x = _componentSkin.width;
 		}
-		
 
 		// *** PROPERTIES *** //
-
 		
 		override public function set width(value:Number):void
 		{
@@ -329,17 +272,6 @@ package smart.gui.components.combobox
 			label.alpha = 1;
 		}
 		
-		public function set dropUpSide(value:Boolean):void 
-		{
-			_dropUpSide = value;
-			
-			if (_dropUpSide) list.centerPoint = SG_CenterPoint.BOTTOM_LEFT;
-			else             list.centerPoint = SG_CenterPoint.TOP_LEFT;
-			
-			list.style.upCorners = value;
-			list.style.downCorners = !value;
-		}
-		
 		override public function set enabled(value:Boolean):void
 		{
 			_enabled = value;
@@ -349,13 +281,6 @@ package smart.gui.components.combobox
 			mouseChildren = value;
 		}
 		
-		public function set dataProvider(data:SP_DataProvider):void 
-		{
-			list.dataProvider = data;
-			enabled = true;
-			setDefaultMessage();
-		}
-		
 		public function set selectedIndex(index:int):void
 		{
 			if (index >= 0 && index < list.length)
@@ -363,12 +288,6 @@ package smart.gui.components.combobox
 				var item:SG_ListItem = list.selectItemAt(index, false);
 				selectItem(item);
 			}
-		}
-		
-		public function set size(value:String):void
-		{
-			_size = value;
-			updateSize();
 		}
 		
 		public function set value(name:String):void
@@ -392,38 +311,9 @@ package smart.gui.components.combobox
 			else				return -1;
 		}
 		
-		public function get items():Array
-		{
-			var items:Array = [];
-			var item:SG_ListItem = list.rootFolder.firstItem;
-			
-			while (item)
-			{
-				items.push(item);
-				item = item.next;
-			}
-			return items;
-		}
-		
-		public function get dropUpSide():Boolean 
-		{
-			return _dropUpSide;
-		}
-		
-		public function get dataProvider():SP_DataProvider 
-		{
-			// TODO ComboBox DataProvider
-			return null;
-		}
-		
 		override public function get width():Number 
 		{
 			return _componentSkin.width + button.width;
-		}
-		
-		public function get size():String
-		{
-			return _size;
 		}
 		
 		public function get value():String

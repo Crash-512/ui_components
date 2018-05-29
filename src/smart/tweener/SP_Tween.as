@@ -130,21 +130,6 @@ package smart.tweener
 		private function calcPreInitOptions():void 
 		{
 			var source:Object = object.source;
-			
-			switch (mode)
-			{
-				case SP_Tweener.COLOR:		
-				{
-					source = (source as DisplayObject).transform.colorTransform;
-					break;
-				}
-				case SP_Tweener.SOUND:	
-				{
-					source = (source as SoundChannel).soundTransform;
-					break;
-				}
-			}
-			
 			var initName:String;
 			
 			for (var name:String in tweenOptions)
@@ -169,19 +154,6 @@ package smart.tweener
 		{
 			var source:Object = object.source;
 			
-			switch (mode)
-			{
-				case SP_Tweener.COLOR:		
-				{
-					source = (source as DisplayObject).transform.colorTransform;
-					break;
-				}
-				case SP_Tweener.SOUND:	
-				{
-					source = (source as SoundChannel).soundTransform;
-					break;
-				}
-			}
 			// Создаём списки опций
 			initList = new SP_TweenOptions();
 			endList = new SP_TweenOptions();
@@ -282,32 +254,7 @@ package smart.tweener
 				if (rounded) value = Math.round(value);
 				
 				// Применение значения
-				switch (mode)
-				{
-					case SP_Tweener.BASIC:	
-					{
-						if (!(source[name] is Boolean) || frame >= time) source[name] = value;
-						break;
-					}
-					case SP_Tweener.COLOR:	
-					{
-						sprite = source as DisplayObject;
-						var color:ColorTransform = sprite.transform.colorTransform;
-						color[name] = value;
-						sprite.transform.colorTransform = color;
-						sprite = null;
-						color = null;
-						break;
-					}
-					case SP_Tweener.SOUND:	
-					{
-						var channel:SoundChannel = source as SoundChannel;
-						var soundTransform:SoundTransform = channel.soundTransform;
-						soundTransform[name] = value;
-						channel.soundTransform = soundTransform;
-						break;
-					}
-				}
+				if (!(source[name] is Boolean) || frame >= time) source[name] = value;
 			}
 			
 			// onUpdate

@@ -30,13 +30,5 @@ package smart.gui.components.icons
 		public static const ADD_FOLDER:String = "add_folder";
 		public static const MAXIMIZE:String = "maximize";
 		public static const MINIMIZE:String = "minimize";
-		
-		public static const ALL:Array =
-		[
-			PLAY, PLAY_CONTOUR, PAUSE, STOP, REWIND_LEFT, REWIND_RIGHT,
-			PREVIOUS, NEXT, SETTINGS, STATISTICS, PIN, CROSS, PLUS, DROP,
-			STEPPER, CHECK, BROWSE, COLLAPSE, OPEN, SAVE,
-			THRASH, /*IMPORT, EXPORT, ADD_DOCUMENT, ADD_FOLDER*/
-		]
 	}
 }

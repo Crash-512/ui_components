@@ -5,23 +5,12 @@ package smart.gui.components.list
 	internal class SG_ListStyle 
 	{
 		private var list:SG_List;
-		
-		private var _enableSeparators:Boolean = true;
 		private var _upCorners:Boolean = true;
 		private var _downCorners:Boolean = true;
 		
-		internal var itemIcon:Class;
-		internal var folderIcon:Class;
-		
-		
-		public function SG_ListStyle(list:SG_List) 
+		public function SG_ListStyle(list:SG_List)
 		{
 			this.list = list;
-			
-			// Default Icons
-			itemIcon = FileIcon;
-			folderIcon = FolderIcon;
-			
 			redrawList();
 		}
 		
@@ -42,20 +31,9 @@ package smart.gui.components.list
 			else                            list.componentSkin.currentState = 3;
 		}
 		
-		public function set enableSeparators(value:Boolean):void 
-		{
-			_enableSeparators = value;
-			list.rootFolder.redraw();
-		}
-		
 		public function get itemColor():uint 
 		{
 			return list.componentSkin.color.getColor(10);
-		}
-		
-		public function get separatorColor():uint
-		{
-			return list.componentSkin.color.getColor(8);
 		}
 		
 		public function get highlightColor():uint
@@ -73,11 +51,6 @@ package smart.gui.components.list
 		{
 			_downCorners = value;
 			redrawList();
-		}
-		
-		public function get enableSeparators():Boolean 
-		{
-			return _enableSeparators;
 		}
 		
 		public function get upCorners():Boolean
