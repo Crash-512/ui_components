@@ -67,8 +67,7 @@ package smart.gui.scroll
 			_display.addChild(_bar);
 			
 			_bar.addEventListener(MouseEvent.MOUSE_DOWN, onPressBar);
-			
-			addEventListener(Event.ENTER_FRAME, onEnterFrame);
+			_bar.addEventListener(Event.ENTER_FRAME, onEnterFrame);
 			
 			_nextY = -1;
 			_autoWidth = false;
